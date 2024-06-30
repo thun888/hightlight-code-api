@@ -29,11 +29,11 @@ def vOneGenerate(response: Response,code: str = "",url: str = "",lang: str = "",
         code = requests.get(url).text
         # 进行转义
         code = code.replace('\\', '\\\\')
+        if lang != "":
+            lexer = get_lexer_by_name(lang)
+        else:
+            lexer = get_lexer_for_filename(filename)
 
-    if lang != "":
-        lexer = get_lexer_by_name(lang)
-    else:
-        lexer = get_lexer_for_filename(filename)
     # 使用HTML formatter进行格式化
     formatter = HtmlFormatter(linenos=True)
     # 进行高亮
@@ -56,6 +56,10 @@ def vOneGenerate(response: Response,code: str = "",url: str = "",lang: str = "",
     if withcss:
         output = output + '''\ndocument.write('<link rel="stylesheet" href="https://jsd.hzchu.top/gh/thun888/asstes@master/files/pygments-css/default.css">')'''
     return output
+
+@app.get("/", response_class=Response)
+def index():
+    return "Hello World"
 
 if __name__ == "__main__":
         uvicorn.run("main:app", host="0.0.0.0", reload=True)
