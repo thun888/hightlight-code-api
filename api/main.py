@@ -54,7 +54,7 @@ def vOneGenerate(response: Response,code: str = "",url: str = "",lang: str = "",
     
     output = 'document.write(\''+ result + '\') '
     if withcss:
-        output = output + '''\ndocument.write('<link rel="stylesheet" href="https://jsd.hzchu.top/gh/thun888/asstes@master/files/pygments-css/default.css">')'''
+        output = output + '''\ndocument.write('<link rel="stylesheet" href="https://jsd.hzchu.top/gh/thun888/assets@master/files/pygments-css/default.css">')'''
     return output
 
 @app.get("/", response_class=Response)
